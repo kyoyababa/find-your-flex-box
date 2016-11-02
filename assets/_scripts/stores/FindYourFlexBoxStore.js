@@ -1,6 +1,6 @@
-import AppDispatcher from '../dispatcher/AppDispatcher'
+import FindYourFlexBoxDispatcher from '../dispatcher/FindYourFlexBoxDispatcher'
 import { EventEmitter } from 'events'
-import { SAY_SOMETHING } from '../actions/SampleActions'
+import { SAY_SOMETHING } from '../actions/FindYourFlexBoxActions'
 
 const CHANGE_EVENT = 'change'
 let _sample = {word: ''}
@@ -9,7 +9,7 @@ function setWord(word){
   _sample.word = word
 }
 
-const SampleStore = Object.assign({}, EventEmitter.prototype, {
+const FindYourFlexBoxStore = Object.assign({}, EventEmitter.prototype, {
   getSample(){
     return _sample
   },
@@ -28,11 +28,11 @@ const SampleStore = Object.assign({}, EventEmitter.prototype, {
 })
 
 // Register callback to handle all updates
-AppDispatcher.register(function(action) {
+FindYourFlexBoxDispatcher.register(function(action) {
   switch(action.actionType) {
     case SAY_SOMETHING:
       setWord(action.word);
-      SampleStore.emitChange();
+      FindYourFlexBoxStore.emitChange();
       break;
 
     default:
@@ -40,4 +40,4 @@ AppDispatcher.register(function(action) {
   }
 });
 
-export default SampleStore
+export default FindYourFlexBoxStore

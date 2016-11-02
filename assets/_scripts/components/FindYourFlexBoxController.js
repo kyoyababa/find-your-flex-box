@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react'
-import SampleStore from '../stores/SampleStore'
-import SampleActions from '../actions/SampleActions'
+import FindYourFlexBoxStore from '../stores/FindYourFlexBoxStore'
+import FindYourFlexBoxActions from '../actions/FindYourFlexBoxActions'
 
 function getSapmleState() {
   return {
-    sample: SampleStore.getSample()
+    sample: FindYourFlexBoxStore.getSample()
   };
 }
 
-class ExampleApp extends Component{
+class FindYourFlexBoxController extends Component{
   constructor(props){
     super(props)
     this._onChange = this._onChange.bind(this)
@@ -16,15 +16,15 @@ class ExampleApp extends Component{
   }
 
   componentDidMount() {
-    SampleStore.addChangeListener(this._onChange);
+    FindYourFlexBoxStore.addChangeListener(this._onChange);
   }
 
   componentWillUnmount() {
-    SampleStore.removeChangeListener(this._onChange);
+    FindYourFlexBoxStore.removeChangeListener(this._onChange);
   }
 
   handleClick(){
-    SampleActions.saySomething("hello");
+    FindYourFlexBoxActions.saySomething("hello");
   }
 
   render(){
@@ -41,4 +41,4 @@ class ExampleApp extends Component{
   }
 }
 
-export default ExampleApp
+export default FindYourFlexBoxController

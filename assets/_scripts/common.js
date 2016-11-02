@@ -1,8 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import ExampleApp from './components/ExampleApp'
+import FindYourFlexBoxController from './components/FindYourFlexBoxController'
 
 render(
-  <ExampleApp />,
+  <FindYourFlexBoxController />,
   document.getElementById('jsi-body-inner')
 )
