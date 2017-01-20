@@ -1,22 +1,33 @@
-import FindYourFlexBoxDispatcher from '../dispatcher/FindYourFlexBoxDispatcher'
-import { EventEmitter } from 'events'
-import { SAY_SOMETHING } from '../actions/FindYourFlexBoxActions'
+import FindYourFlexBoxDispatcher from '../dispatcher/FindYourFlexBoxDispatcher';
+import { EventEmitter } from 'events';
+import { SAY_SOMETHING, STYLE_SELECTED } from '../actions/FindYourFlexBoxActions';
 
 const CHANGE_EVENT = 'change'
-let _sample = {word: ''}
+let _states = {
+  word: '',
+  headlines: {
+    default: true,
+    selected: false
+  }
+}
 
-function setWord(word){
-  _sample.word = word
+function setWord(word) {
+  _states.word = word
+}
+
+function setHeadlineClass() {
+  _states.headlines.default = false;
+  _states.headlines.selected = true;
 }
 
 const FindYourFlexBoxStore = Object.assign({}, EventEmitter.prototype, {
-  getSample(){
-    return _sample
+  getStates() {
+    return _states;
   },
 
   emitChange: function() {
    this.emit(CHANGE_EVENT);
- },
+  },
 
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
@@ -27,17 +38,16 @@ const FindYourFlexBoxStore = Object.assign({}, EventEmitter.prototype, {
   }
 })
 
-// Register callback to handle all updates
-FindYourFlexBoxDispatcher.register(function(action) {
+FindYourFlexBoxDispatcher.register((action) => {
   switch(action.actionType) {
-    case SAY_SOMETHING:
-      setWord(action.word);
+    case STYLE_SELECTED:
+      setHeadlineClass('shown');
       FindYourFlexBoxStore.emitChange();
       break;
 
     default:
-      // no op
+      throw new Error(`The action ${action} in dispatcher is not under consideration!`);
   }
 });
 
-export default FindYourFlexBoxStore
+export default FindYourFlexBoxStore;

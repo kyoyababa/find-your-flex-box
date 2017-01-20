@@ -59,7 +59,7 @@ gulp.task('webserver', () => {
  * EJS builder
  **/
 gulp.task('ejs', () => {
-  gulp.src('./pages/**/*.ejs')
+  gulp.src('./pages/*.ejs')
     .pipe(plumber({
       handleError: (error) => {
         throw new Error(error);

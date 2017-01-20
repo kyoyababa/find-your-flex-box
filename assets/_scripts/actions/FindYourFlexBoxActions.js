@@ -1,13 +1,13 @@
-import FindYourFlexBoxDispatcher from '../dispatcher/FindYourFlexBoxDispatcher'
-export const SAY_SOMETHING = 'SAY_SOMETHING'
+import FindYourFlexBoxDispatcher from '../dispatcher/FindYourFlexBoxDispatcher';
+export const STYLE_SELECTED = 'STYLE_SELECTED';
 
 const FindYourFlexBoxActions = {
-  saySomething(word) {
+  isSelectedSomething(element) {
     FindYourFlexBoxDispatcher.dispatch({
-      actionType: SAY_SOMETHING,
-      word
+      actionType: STYLE_SELECTED,
+      element
     });
   }
 };
 
-export default FindYourFlexBoxActions
+export default FindYourFlexBoxActions;
